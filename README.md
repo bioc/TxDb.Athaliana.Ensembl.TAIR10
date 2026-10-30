@@ -2,9 +2,8 @@
 
 **TxDb.Athaliana.Ensembl.TAIR10** provides transcript, exon, CDS, and gene
 annotations for *Arabidopsis thaliana* based on the TAIR10 reference genome
-and Ensembl Plants release 63 GFF3 annotation. It includes nuclear and
-organellar sequence information and can be queried with
-[GenomicFeatures](https://bioconductor.org/packages/GenomicFeatures).
+and Ensembl Plants release 63 GFF3 annotation. The resource is available
+through Bioconductor's AnnotationHub.
 
 ## Installation
 
@@ -17,25 +16,28 @@ if (!requireNamespace("BiocManager", quietly = TRUE)) {
 BiocManager::install("TxDb.Athaliana.Ensembl.TAIR10")
 ```
 
-The development version can be installed from GitHub:
+To install the development version from GitHub:
 
 ```r
-if (!requireNamespace("BiocManager", quietly = TRUE)) {
-    install.packages("BiocManager")
+if (!requireNamespace("remotes", quietly = TRUE)) {
+    install.packages("remotes")
 }
-BiocManager::install("kabilanbio/TxDb.Athaliana.Ensembl.TAIR10")
+remotes::install_github("kabilanbio/TxDb.Athaliana.Ensembl.TAIR10")
 ```
 
 ## Usage
 
-The TxDb SQLite resource is hosted through AnnotationHub and is retrieved
-when the package is used.
+Retrieve the TxDb resource from AnnotationHub:
 
 ```r
-library(TxDb.Athaliana.Ensembl.TAIR10)
+library(AnnotationHub)
 library(GenomicFeatures)
 
-txdb <- TxDb.Athaliana.Ensembl.TAIR10
+ah <- AnnotationHub()
+query(ah, "TxDb.Athaliana.Ensembl.TAIR10")
+
+# AnnotationHub identifier for this resource
+txdb <- ah[["AH122287"]]
 
 seqinfo(txdb)
 genes(txdb)
@@ -44,21 +46,12 @@ exonsBy(txdb, by = "tx")
 cdsBy(txdb, by = "tx")
 ```
 
-Alternatively, retrieve the resource directly through AnnotationHub:
+## Data source and reproducibility
 
-```r
-library(AnnotationHub)
-
-ah <- AnnotationHub()
-query(ah, "TxDb.Athaliana.Ensembl.TAIR10")
-```
-
-## Data source
-
-The annotation was obtained from Ensembl Plants release 63 for the TAIR10
-assembly. The GFF3 annotation and reference FASTA used to build the database
-are both identified in `inst/scripts/make-data.R`. The FASTA is used to
-derive sequence lengths and circularity information.
+The annotation is based on the TAIR10 assembly and Ensembl Plants release 63.
+The GFF3 annotation and corresponding reference FASTA URLs are recorded in
+`inst/scripts/make-data.R`. The FASTA is used to provide sequence lengths
+and circularity information when constructing the TxDb.
 
 ## Documentation
 
