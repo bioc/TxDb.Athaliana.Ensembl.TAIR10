@@ -1,5 +1,5 @@
 ---
-title: "TxDb.Athaliana.Ensembl.TAIR10"
+title: "Transcript annotation for Arabidopsis thaliana (TAIR10)"
 author: "Kabilan"
 output:
   BiocStyle::html_document
