@@ -58,8 +58,18 @@ stopifnot(file.exists(gff_file), file.exists(fasta_file))
 
 genome_fasta <- readDNAStringSet(fasta_file)
 
-if (is.null(names(genome_fasta)) || anyDuplicated(names(genome_fasta))) {
-    stop("FASTA sequence names must be present and unique.")
+if (is.null(names(genome_fasta))) {
+    stop("FASTA sequence names must be present.")
+}
+
+# Ensembl FASTA deflines may contain descriptive text after the sequence ID.
+# Keep only the first whitespace-delimited token so the names match GFF3
+# sequence IDs.
+names(genome_fasta) <- sub("[[:space:]].*$", "", names(genome_fasta))
+
+if (anyNA(names(genome_fasta)) || any(names(genome_fasta) == "") ||
+    anyDuplicated(names(genome_fasta))) {
+    stop("FASTA sequence IDs must be non-empty and unique.")
 }
 
 # Use every sequence in the supplied toplevel FASTA. Do not replace this
