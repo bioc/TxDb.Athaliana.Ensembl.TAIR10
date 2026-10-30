@@ -11,3 +11,7 @@
 /doc/
 /Meta/
 /help/
+.Rproj.user
+*.Rcheck/
+*.tar.gz
+.DS_Store

@@ -10,3 +10,4 @@
 ^Meta$
 ^vignettes/vignette\.Rmd\.orig$
 ^vignettes/preCompile\.R$
+^\.Ruserdata$

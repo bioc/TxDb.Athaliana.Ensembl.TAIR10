@@ -33,3 +33,7 @@
 ## Version 0.99.5 (2026-08-15)
 
 - Fixed the WARNINGS.
+
+## Version 0.99.6 (2026-10-31)
+
+- Fixed the bugs.

@@ -10,7 +10,7 @@
 
 # Update this value if the regenerated SQLite file is deposited under a
 # new Zenodo record/version.
-zenodo_record_id <- "21849168"
+zenodo_record_id <- "23822386"
 
 meta <- data.frame(
     Title = paste(
