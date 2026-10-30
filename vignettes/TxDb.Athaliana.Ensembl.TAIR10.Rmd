@@ -1,0 +1,165 @@
+---
+title: "TxDb.Athaliana.Ensembl.TAIR10"
+author: "Kabilan"
+output:
+  BiocStyle::html_document
+vignette: >
+  %\VignetteIndexEntry{TxDb.Athaliana.Ensembl.TAIR10}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+`TxDb.Athaliana.Ensembl.TAIR10` provides transcript annotation
+information for *Arabidopsis thaliana* TAIR10.
+
+This vignette demonstrates how to retrieve the transcript database from
+`AnnotationHub` and access genes, transcripts, exons, coding sequences,
+promoter regions, and feature relationships.
+
+# Installation
+
+Install the package from Bioconductor with:
+
+```{r install, eval=FALSE}
+BiocManager::install("TxDb.Athaliana.Ensembl.TAIR10")
+```
+
+# Load required packages
+
+```{r loading, message=FALSE, warning=FALSE}
+library(AnnotationHub)
+library(GenomicFeatures)
+library(GenomicRanges)
+```
+
+# Retrieve the TxDb object from AnnotationHub
+
+The TxDb object is retrieved using its AnnotationHub record:
+
+```{r annotationhub, message=FALSE, warning=FALSE}
+ah <- AnnotationHub::AnnotationHub()
+TxDb.Athaliana.Ensembl.TAIR10 <- ah[["AH122287"]]
+```
+
+Check the class of the retrieved object:
+
+```{r class}
+class(TxDb.Athaliana.Ensembl.TAIR10)
+```
+
+# TxDb summary
+
+Display the transcript database:
+
+```{r txdb}
+TxDb.Athaliana.Ensembl.TAIR10
+```
+
+A summary can also be obtained with:
+
+```{r summary}
+summary(TxDb.Athaliana.Ensembl.TAIR10)
+```
+
+# Sequence information
+
+The sequence information is available through `seqinfo()`:
+
+```{r seqinfo}
+seqinfo(TxDb.Athaliana.Ensembl.TAIR10)
+```
+
+The available sequence levels can be obtained with:
+
+```{r seqlevels}
+seqlevels(TxDb.Athaliana.Ensembl.TAIR10)
+```
+
+# Gene annotations
+
+Gene ranges can be extracted with `genes()`:
+
+```{r genes}
+gene_annotations <- genes(TxDb.Athaliana.Ensembl.TAIR10)
+gene_annotations
+```
+
+# Transcript annotations
+
+Transcript ranges can be extracted with `transcripts()`:
+
+```{r transcripts}
+transcript_annotations <- transcripts(TxDb.Athaliana.Ensembl.TAIR10)
+transcript_annotations
+```
+
+# Exon annotations
+
+Exon ranges can be extracted with `exons()`:
+
+```{r exons}
+exon_annotations <- exons(TxDb.Athaliana.Ensembl.TAIR10)
+exon_annotations
+```
+
+# Coding sequences
+
+Coding sequence ranges can be extracted with `cds()`:
+
+```{r cds}
+cds_annotations <- cds(TxDb.Athaliana.Ensembl.TAIR10)
+cds_annotations
+```
+
+# Promoter regions
+
+Promoter regions can be generated using `promoters()`:
+
+```{r promoters}
+promoter_annotations <- promoters(
+    TxDb.Athaliana.Ensembl.TAIR10,
+    upstream = 2000,
+    downstream = 200
+)
+promoter_annotations
+```
+
+# Transcripts grouped by gene
+
+Transcripts can be grouped by gene with `transcriptsBy()`:
+
+```{r transcriptsBy}
+transcripts_by_gene <- transcriptsBy(
+    TxDb.Athaliana.Ensembl.TAIR10,
+    by = "gene"
+)
+transcripts_by_gene
+```
+
+# Exons grouped by transcript
+
+Exons can be grouped by transcript with `exonsBy()`:
+
+```{r exonsBy}
+exons_by_transcript <- exonsBy(
+    TxDb.Athaliana.Ensembl.TAIR10,
+    by = "tx"
+)
+exons_by_transcript
+```
+
+# Gene ranges
+
+The chromosome assignments of genes can be inspected with:
+
+```{r gene-ranges}
+head(seqnames(gene_annotations))
+```
+
+# Session information
+
+```{r sessioninfo}
+sessionInfo()
+```
