@@ -78,7 +78,7 @@ chrominfo <- GenomeInfoDb::Seqinfo(
 # Confirm that the expected TAIR10 chromosomes and organellar sequences
 # are present before constructing the database.
 expected_sequences <- c("1", "2", "3", "4", "5", "Mt", "Pt")
-missing_sequences <- setdiff(expected_sequences, chrominfo$chrom)
+missing_sequences <- setdiff(expected_sequences, GenomeInfoDb::seqlevels(chrominfo))
 if (length(missing_sequences)) {
     stop(
         "The reference FASTA is missing expected TAIR10 sequences: ",
