@@ -65,11 +65,14 @@ if (is.null(names(genome_fasta)) || anyDuplicated(names(genome_fasta))) {
 # Use every sequence in the supplied toplevel FASTA. Do not replace this
 # table with a manually restricted chromosome list: doing so would discard
 # unplaced/unlocalized sequences present in the reference FASTA.
-chrominfo <- data.frame(
-    chrom = names(genome_fasta),
-    length = as.numeric(width(genome_fasta)),
-    is_circular = names(genome_fasta) %in% c("Mt", "Pt"),
-    stringsAsFactors = FALSE
+# Supply a Seqinfo object (rather than a data.frame) so that sequence
+# lengths, circularity, AND the genome assembly label are retained by
+# makeTxDbFromGFF(). The Seqinfo method is supported by chrominfo.
+chrominfo <- GenomeInfoDb::Seqinfo(
+    seqnames = names(genome_fasta),
+    seqlengths = as.numeric(width(genome_fasta)),
+    isCircular = names(genome_fasta) %in% c("Mt", "Pt"),
+    genome = rep(genome_assembly, length(genome_fasta))
 )
 
 # Confirm that the expected TAIR10 chromosomes and organellar sequences
@@ -96,8 +99,10 @@ txdb <- makeTxDbFromGFF(
     chrominfo = chrominfo
 )
 
-# Set the genome assembly on all sequences in the TxDb.
-GenomeInfoDb::genome(GenomeInfoDb::seqinfo(txdb)) <- genome_assembly
+# The assembly label is supplied in chrominfo above. Do not try to set
+# genome(seqinfo(txdb)) after construction: that changes a temporary
+# Seqinfo object, not the Seqinfo stored in the TxDb. The TxDb seqinfo
+# replacement method currently supports sequence-name changes only.
 
 # Validate the key sequence metadata before writing the SQLite file.
 si <- GenomeInfoDb::seqinfo(txdb)
