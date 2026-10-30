@@ -8,6 +8,10 @@
 ### description and in make-data.R for reproducibility.
 ###
 
+# Update this value if the regenerated SQLite file is deposited under a
+# new Zenodo record/version.
+zenodo_record_id <- "21849168"
+
 meta <- data.frame(
     Title = paste(
         "TxDb.Athaliana.Ensembl.TAIR10",
@@ -35,7 +39,10 @@ meta <- data.frame(
     RDataClass = "TxDb",
     DispatchClass = "SQLiteFile",
     Location_Prefix = "https://zenodo.org/",
-    RDataPath = "records/21849168/files/TxDb.Athaliana.Ensembl.TAIR10",
+    RDataPath = paste0(
+        "records/", zenodo_record_id,
+        "/files/TxDb.Athaliana.Ensembl.TAIR10"
+    ),
     Tags = paste(
         "AnnotationData:TxDb:Arabidopsis_thaliana:",
         "SequenceAnnotation:AnnotationHub",
