@@ -22,7 +22,7 @@ Description:
     Plants GFF3 annotation and can be queried using GenomicFeatures accessors 
     such as genes(), transcripts(), exonsBy(), and cdsBy().
 Depends:
-    R (>= 4.3.0)
+    R (>= 4.5.0)
 Imports:
     stats,
     GenomicFeatures,
