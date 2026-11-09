@@ -1,6 +1,6 @@
 Package: TxDb.Athaliana.Ensembl.TAIR10
 Title: Transcripts Annotation Database for Arabidopsis thaliana
-Version: 0.99.7
+Version: 0.99.6
 Authors@R:
     c(
       person("Dwijesh Chandra", "Mishra",
@@ -18,11 +18,12 @@ Authors@R:
 Description:
     TxDb.Athaliana.Ensembl.TAIR10 provides transcript, exon, CDS, and gene 
     annotations for Arabidopsis thaliana based on the TAIR10 reference genome 
-    and Ensembl Plants release 63. The TxDb object is built from the Ensembl 
-    Plants GFF3 annotation and can be queried using GenomicFeatures accessors 
-    such as genes(), transcripts(), exonsBy(), and cdsBy().
+    and Ensembl Plants release 63. The TxDb object is built from the official 
+    Ensembl Plants GFF3 annotation and distributed through AnnotationHub. 
+    Standard GenomicFeatures accessors such as genes(), transcripts(), 
+    exonsBy(), and cdsBy() can be used to query and extract gene models.
 Depends:
-    R (>= 4.5.0)
+    R (>= 4.6.0)
 Imports:
     stats,
     GenomicFeatures,
