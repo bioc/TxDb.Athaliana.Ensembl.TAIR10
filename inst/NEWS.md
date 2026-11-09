@@ -38,3 +38,7 @@
 
 - Fixed RDataPath in metadata.csv to include .sqlite extension.
 - Cleaned .gitignore for RStudio project compatibility.
+
+## Version 0.99.7 (2026-11-09)
+
+- Updated the vignettes.
