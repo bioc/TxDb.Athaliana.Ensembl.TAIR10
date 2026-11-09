@@ -1,18 +1,27 @@
-.Rproj.user/
+# R session and history files
 .Rhistory
+.Rapp.history
 .RData
 .RDataTmp
 .Rdata
-.httr-oauth
-.DS_Store
-.quarto
-.html
+
+# RStudio files
+.Rproj.user
+.Ruserdata
 *.Rproj
+
+# Build and check artifacts
+*.Rcheck/
+*.tar.gz
 /doc/
 /Meta/
 /help/
-.Rproj.user
-*.Rcheck/
-*.tar.gz
-.DS_Store
 
+# Documentation and temporary files
+.quarto/
+.httr-oauth
+.DS_Store
+.html
+Thumbs.db
+.Rproj.user
+.Rproj.user

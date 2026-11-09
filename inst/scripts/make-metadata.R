@@ -41,7 +41,7 @@ meta <- data.frame(
     Location_Prefix = "https://zenodo.org/",
     RDataPath = paste0(
         "records/", zenodo_record_id,
-        "/files/TxDb.Athaliana.Ensembl.TAIR10"
+        "/files/TxDb.Athaliana.Ensembl.TAIR10.sqlite"
     ),
     Tags = paste(
         "AnnotationData:TxDb:Arabidopsis_thaliana:",
