@@ -1,4 +1,4 @@
-# R session and history files
+# History and session data
 .Rhistory
 .Rapp.history
 .RData
@@ -6,7 +6,7 @@
 .Rdata
 
 # RStudio files
-/.Rproj.user/
+.Rproj.user
 .Ruserdata
 *.Rproj
 
@@ -23,4 +23,3 @@
 .DS_Store
 .html
 Thumbs.db
-
