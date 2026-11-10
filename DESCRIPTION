@@ -1,6 +1,6 @@
 Package: TxDb.Athaliana.Ensembl.TAIR10
 Title: Transcripts Annotation Database for Arabidopsis thaliana
-Version: 0.99.6
+Version: 0.99.7
 Authors@R:
     c(
       person("Dwijesh Chandra", "Mishra",
